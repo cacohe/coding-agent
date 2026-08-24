@@ -1,0 +1,37 @@
+# agent-harness：本地 Agent Harness + 编码 Agent 工程（不对外发行）
+[project]
+name = "agent-harness"
+version = "0.1.0"
+description = "Agent harness runtime and coding agent"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+    "litellm>=1.0.0",
+    "mcp>=1.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+    "ruff>=0.9.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["harness", "agents", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "W"]
+ignore = ["E501", "UP042"]
