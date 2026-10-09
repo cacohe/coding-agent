@@ -16,7 +16,7 @@
 
 ```mermaid
 flowchart LR
-  CLI["coding_agent.py"] --> Factory["build_coding_agent"]
+  CLI["coding_agent.py"] --> Factory["create_coding_harness"]
   Factory --> Loop["AgentLoop.run_turn"]
   Loop --> Model["LiteLLM"]
   Loop --> Gate["PermissionGate"]
@@ -35,7 +35,7 @@ flowchart LR
 3. 调模型；若没有 tool_use，走 StopPolicy，然后返回
 4. 若有 tool_use：钩子 → `permission.authorize` → `ToolDispatcher.execute` → 把结果当 user 消息再进循环
 
-`harness/api.py` 的 `Harness` 是门面：`create`、`session`、注册工具和 Pack。编码产品装配在 `agents/coding/factory.py`。
+`harness/api.py` 的 `Harness` 是门面：`create`、`session`、注册工具和 Pack。编码产品用 `create_coding_harness` 装配一份已挂 Pack 的 Harness；CLI 仍是用户面对的编码 Agent。
 
 ## 3. 权限
 

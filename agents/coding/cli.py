@@ -8,7 +8,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from agents.coding.factory import build_coding_agent
+from agents.coding.factory import create_coding_harness
 from agents.coding.provider import ModelInferenceError, infer_model_id
 
 
@@ -62,7 +62,7 @@ async def run_repl(
     api_base: str | None,
 ) -> None:
     """交互 REPL。"""
-    harness = build_coding_agent(
+    harness = create_coding_harness(
         workspace,
         model_id=model_id,
         auto_approve=auto_approve,

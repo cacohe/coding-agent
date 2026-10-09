@@ -1,4 +1,4 @@
-"""装配可真正使用的编码 Agent（基于 agent_harness 核心能力）。"""
+"""装配编码产品用的 Harness（工作区工具、CodingPack、skills）。"""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ from agents.coding.pack import CodingPack
 from agents.coding.prompts import CODING_SYSTEM_PROMPT
 
 
-def build_coding_agent(
+def create_coding_harness(
     workspace: Path | None = None,
     *,
     model_id: str = "openai/gpt-4o",
@@ -28,7 +28,7 @@ def build_coding_agent(
     api_key: str | None = None,
     max_iterations: int = 60,
 ) -> Harness:
-    """创建已挂载工作区工具、CodingPack 与 skills 的 Harness。
+    """创建已挂载工作区工具、CodingPack 与 skills 的编码 Harness。
 
     未传 model 时经 LiteLLMModelClient 连接 model_id；测试可注入自定义 ModelClient。
     """

@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import pytest
-from agents.coding.factory import build_coding_agent
+from agents.coding.factory import create_coding_harness
 from tests.fakes import FakeModelClient, text_response, tool_call_response
 
 
@@ -21,7 +21,7 @@ async def test_coding_agent_writes_file(tmp_path: Path) -> None:
             text_response("Added hello.py"),
         ]
     )
-    harness = build_coding_agent(
+    harness = create_coding_harness(
         tmp_path,
         model=fake,
         auto_approve=True,
